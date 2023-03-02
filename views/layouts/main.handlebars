@@ -4,15 +4,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Registry</title>
+  <title>Tech Blog</title>
   <link rel="stylesheet" href="/css/jass.css">
 </head>
 
 <body>
   <header class="display-flex justify-space-between align-center p-2">
     <h1>
-      User Registry
+      Tech Blog
     </h1>
+    <a href="/">Home</a>
+    <a href="/api/posts">Dashboard</a>
+
+    {{#unless logged_in}}
+    <a href="/login" id="login">login</a>
+    {{/unless}}
+
+    {{#unless logged_in}}
+    <a href="/signup" id="signup">sign up</a>    
+    
     <!-- Only display the logout button if the user is logged in -->
     {{#if logged_in}}
     <nav>
@@ -29,7 +39,7 @@
 
   <!-- Only include the logout script if the user is logged in -->
   {{#if logged_in}}
-  <script src="/js/logout.js"></script>
+  <script src="../../public/js/logout.js"></script>
   {{/if}}
 </body>
 

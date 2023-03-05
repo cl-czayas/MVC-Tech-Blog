@@ -1,0 +1,32 @@
+[
+    {
+        "title": "Hello World!",
+        "text": "How are you?",
+        "user_id": 1
+    },
+    {
+        "title": "I love web development!",
+        "text": "I am making a blog post",
+        "user_id": 1
+    },
+    {
+        "title": "Wow!",
+        "text": "Can't believe this works!",
+        "user_id": 2
+    },
+    {
+        "title": "Random",
+        "text": "Just saying hello!",
+        "user_id": 2
+    },
+    {
+        "title": "Hello!",
+        "text": "I'm bored!",
+        "user_id": 2
+    },
+    {
+        "title": "Test post",
+        "text": "Is this working?",
+        "user_id": 3
+    }
+]

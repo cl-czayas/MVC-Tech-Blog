@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { Post , User, Comment } = require("../../models");
 const withAuth = require('../../utils/auth')
 
+//Get all posts
 router.get('/', async (req, res) => {
     try {
         const postData = await Post.findAll({
@@ -25,6 +26,7 @@ router.get('/', async (req, res) => {
     }
 });
 
+//Find all posts for logged in user
 router.get('/dashboard', withAuth, (req, res) => {
     Post.findAll({
         where: {
@@ -58,6 +60,33 @@ router.get('/dashboard', withAuth, (req, res) => {
         console.log(err);
         res.status(500).json(err);
     });
+});
+
+//Find individual post
+router.get('/:id', async (req, res) => {
+    try {
+        const postData = await Post.findOne({
+            where: {id: req.params.id},
+            attributes: ['id','title','text'],
+            include: [
+                {
+                    model: Comment,
+                    attributes: ['id', 'comment_text', 'post_id', 'user_id'],
+                    include: { model: User, attributes: ['username'] }
+                },
+                {
+                    model: User,
+                    attributes: ['username']
+                }
+                    ]
+});
+
+    const singlePost = postData.get({ plain: true });
+    res.render('single', { singlePost, logged_in: req.session.logged_in });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
 });
 
 module.exports = router;
